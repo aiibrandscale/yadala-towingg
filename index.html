@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── Primary SEO ──────────────────────────────────────────────────────── -->
+  <title>Towing Services San Diego &amp; Chula Vista | Yadala Towing | (619) 480-5324</title>
+  <meta name="description" content="Yadala Towing offers 24/7 fast, affordable towing and roadside assistance in San Diego &amp; Chula Vista. Flatbed, motorcycle, RV, boat &amp; car towing. Military discount. Call (619) 480-5324." />
+  <link rel="canonical" href="https://www.yadala-towing.com" />
+
+  <!-- ─── Open Graph ────────────────────────────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Yadala Towing | 24/7 San Diego Towing &amp; Roadside Assistance" />
+  <meta property="og:description" content="Fast, affordable towing in San Diego County. Car, flatbed, motorcycle, RV &amp; boat towing. Call (619) 480-5324 anytime." />
+  <meta property="og:image" content="https://www.yadala-towing.com/wp-content/uploads/2021/08/6b9ded4a-b55d-41b5-aed2-20f32e81f02c-1024x768.jpg" />
+  <meta property="og:url" content="https://www.yadala-towing.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ─── Performance: Preload hero ─────────────────────────────────────────── -->
+  <link rel="preload" as="image" href="https://www.yadala-towing.com/wp-content/uploads/2021/08/6b9ded4a-b55d-41b5-aed2-20f32e81f02c-1024x768.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- ─── Tailwind Play CDN ─────────────────────────────────────────────────── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            accent: '#F5A623',
+            dark: '#111111',
+            card: '#1C1C1C',
+          },
+          animation: {
+            'pulse-cta': 'pulse-cta 2s ease-in-out infinite',
+            'fade-in': 'fade-in 0.3s ease-out',
+          },
+          keyframes: {
+            'pulse-cta': {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.05)' },
+            },
+            'fade-in': {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- ─── Critical inline CSS ──────────────────────────────────────────────── -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #111111; }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #1C1C1C; }
+    ::-webkit-scrollbar-thumb { background: #F5A623; border-radius: 3px; }
+    /* Gallery masonry */
+    .gallery-grid { columns: 1; column-gap: 1rem; }
+    @media (min-width: 640px)  { .gallery-grid { columns: 2; } }
+    @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; }
+    /* Mobile bottom bar spacing */
+    @media (max-width: 767px) { main, footer { padding-bottom: 64px; } }
+    /* Horizontal review scroll hide scrollbar */
+    .reviews-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+    .reviews-scroll::-webkit-scrollbar { display: none; }
+    /* FAQ smooth height */
+    .faq-body { transition: max-height 0.35s ease, opacity 0.35s ease; }
+  </style>
+
+  <!-- ─── LocalBusiness Schema ──────────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Yadala Towing",
+    "image": "https://yadala-towing.com/wp-content/uploads/2021/05/logo2.png",
+    "telephone": "+16194805324",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3487 Main St",
+      "addressLocality": "Chula Vista",
+      "addressRegion": "CA",
+      "postalCode": "91911",
+      "addressCountry": "US"
+    },
+    "url": "https://www.yadala-towing.com",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "reviewCount": "11"
+    },
+    "areaServed": "San Diego County",
+    "priceRange": "$$",
+    "paymentAccepted": "Cash, Credit Card, Debit Card"
+  }
+  </script>
+
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
