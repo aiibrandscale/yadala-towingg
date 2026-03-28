@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Mobile browser chrome color (Android) -->
+  <meta name="theme-color" content="#F5A623" />
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <!-- ─── Primary SEO ──────────────────────────────────────────────────────── -->
   <title>Towing Services San Diego &amp; Chula Vista | Yadala Towing | (619) 480-5324</title>
@@ -60,23 +65,43 @@
   <!-- ─── Critical inline CSS ──────────────────────────────────────────────── -->
   <style>
     html { scroll-behavior: smooth; }
-    body { background-color: #111111; }
-    /* Scrollbar styling */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #1C1C1C; }
+    body { background-color: #FFFFFF; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img { max-width: 100%; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #F3F4F6; }
     ::-webkit-scrollbar-thumb { background: #F5A623; border-radius: 3px; }
-    /* Gallery masonry */
-    .gallery-grid { columns: 1; column-gap: 1rem; }
-    @media (min-width: 640px)  { .gallery-grid { columns: 2; } }
-    @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
-    .gallery-item { break-inside: avoid; margin-bottom: 1rem; }
-    /* Mobile bottom bar spacing */
-    @media (max-width: 767px) { main, footer { padding-bottom: 64px; } }
-    /* Horizontal review scroll hide scrollbar */
+
+    /* Gallery masonry — 2 cols on mobile, 3 on desktop */
+    .gallery-grid { columns: 2; column-gap: 0.625rem; }
+    @media (min-width: 1024px) { .gallery-grid { columns: 3; column-gap: 1rem; } }
+    .gallery-item { break-inside: avoid; margin-bottom: 0.625rem; }
+    @media (min-width: 1024px) { .gallery-item { margin-bottom: 1rem; } }
+
+    /* Mobile bottom bar — clear space so content isn't hidden behind it */
+    @media (max-width: 767px) { main, footer { padding-bottom: 72px; } }
+
+    /* Review horizontal scroll */
     .reviews-scroll { scrollbar-width: none; -ms-overflow-style: none; }
     .reviews-scroll::-webkit-scrollbar { display: none; }
-    /* FAQ smooth height */
-    .faq-body { transition: max-height 0.35s ease, opacity 0.35s ease; }
+
+    /* Chat widget — float above the mobile bottom bar */
+    @media (max-width: 767px) {
+      .chat-toggle-btn  { bottom: calc(72px + 0.875rem) !important; right: 0.875rem !important; }
+      .chat-panel-wrap  {
+        bottom: calc(72px + 4.25rem) !important;
+        right: 0.75rem !important;
+        width: calc(100vw - 1.5rem) !important;
+        height: 62svh !important;
+      }
+    }
+
+    /* Safe area inset for notched iPhones */
+    .mobile-bar-safe {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
   </style>
 
   <!-- ─── LocalBusiness Schema ──────────────────────────────────────────────── -->

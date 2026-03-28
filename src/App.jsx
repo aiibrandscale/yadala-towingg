@@ -151,16 +151,17 @@ function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         backgroundColor: '#FFFFFF',
-        borderBottom: scrolled ? '1px solid #E5E7EB' : '1px solid transparent',
+        borderBottom: `1px solid ${scrolled ? C.cardBorder : 'transparent'}`,
         boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.08)' : 'none',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           <a href="#" aria-label="Yadala Towing — Home" className="flex-shrink-0">
-            <img src={LOGO_URL} alt="Yadala Towing logo" className="h-10 lg:h-12 w-auto" width="160" height="52" />
+            <img src={LOGO_URL} alt="Yadala Towing logo" className="h-9 sm:h-10 lg:h-12 w-auto" width="160" height="52" />
           </a>
 
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (
               <a
@@ -175,23 +176,30 @@ function Navbar() {
             ))}
           </div>
 
+          {/* Desktop CTA */}
           <a
             href={PHONE_HREF}
-            className="hidden md:inline-flex items-center gap-2 font-display font-bold text-sm px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-105"
+            className="hidden md:inline-flex items-center gap-2 font-display font-bold text-sm px-5 py-3 rounded-xl transition-all duration-200 hover:scale-105"
             style={{ backgroundColor: C.accent, color: C.accentText }}
           >
             <PhoneIcon cls="w-4 h-4" /> Call {PHONE}
           </a>
 
-          <div className="flex md:hidden items-center gap-3">
+          {/* Mobile: call button + hamburger */}
+          <div className="flex md:hidden items-center gap-2">
             <a
               href={PHONE_HREF}
-              className="animate-pulse-cta inline-flex items-center gap-1.5 font-display font-bold text-sm px-4 py-2 rounded-lg"
-              style={{ backgroundColor: C.accent, color: C.accentText }}
+              className="animate-pulse-cta inline-flex items-center gap-1.5 font-display font-bold text-sm px-3 py-2.5 rounded-xl"
+              style={{ backgroundColor: C.accent, color: C.accentText, minHeight: '44px' }}
             >
               <PhoneIcon cls="w-4 h-4" /> Call Now
             </a>
-            <button onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu" className="p-1.5" style={{ color: C.heading }}>
+            <button
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Toggle menu"
+              className="flex items-center justify-center rounded-xl"
+              style={{ color: C.heading, minWidth: '44px', minHeight: '44px' }}
+            >
               {menuOpen
                 ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                 : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -201,23 +209,24 @@ function Navbar() {
         </div>
       </div>
 
-      <div className="md:hidden overflow-hidden transition-all duration-300" style={{ maxHeight: menuOpen ? '260px' : '0' }}>
-        <div className="px-4 py-4 space-y-1 border-t" style={{ backgroundColor: C.bgAlt, borderColor: C.cardBorder }}>
+      {/* Mobile dropdown */}
+      <div className="md:hidden overflow-hidden transition-all duration-300" style={{ maxHeight: menuOpen ? '280px' : '0' }}>
+        <div className="px-4 py-3 border-t" style={{ backgroundColor: C.bgAlt, borderColor: C.cardBorder }}>
           {links.map(l => (
             <a
               key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-              className="block font-body font-medium py-3 px-2 uppercase tracking-widest text-sm border-b last:border-0"
-              style={{ color: C.body, borderColor: C.cardBorder }}
+              className="flex items-center font-body font-medium py-3.5 px-2 uppercase tracking-widest text-sm border-b last:border-0"
+              style={{ color: C.body, borderColor: C.cardBorder, minHeight: '52px' }}
             >
               {l.label}
             </a>
           ))}
           <a
             href={PHONE_HREF}
-            className="flex items-center justify-center gap-2 font-display font-bold py-3 rounded-lg mt-3"
-            style={{ backgroundColor: C.accent, color: C.accentText }}
+            className="flex items-center justify-center gap-2 font-display font-bold py-4 rounded-xl mt-3"
+            style={{ backgroundColor: C.accent, color: C.accentText, fontSize: '1.1rem' }}
           >
-            <PhoneIcon cls="w-4 h-4" /> Call {PHONE}
+            <PhoneIcon cls="w-5 h-5" /> Call {PHONE}
           </a>
         </div>
       </div>
@@ -229,7 +238,7 @@ function Navbar() {
 function Hero() {
   const [loaded, setLoaded] = useState(false)
   return (
-    <section id="hero" className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '100svh', paddingTop: '80px' }}>
+    <section id="hero" className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '100svh', paddingTop: '56px' }}>
       <div className="absolute inset-0">
         <img
           src={HERO_IMG} alt="towing truck San Diego County roadside assistance"
@@ -238,50 +247,74 @@ function Hero() {
           style={{ opacity: loaded ? 1 : 0 }}
           width="1024" height="768" fetchpriority="high"
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.7) 60%, rgba(10,10,10,0.96) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.72) 55%, rgba(10,10,10,0.97) 100%)' }} />
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: `linear-gradient(to right, transparent, ${C.accent}, transparent)` }} />
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6" style={{ backgroundColor: 'rgba(245,166,35,0.18)', border: '1px solid rgba(245,166,35,0.45)' }}>
-          <span className="inline-block w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: C.accent }} />
-          <span className="font-body font-medium text-sm tracking-widest uppercase" style={{ color: C.accent }}>San Diego County's Most Trusted Towing</span>
+      <div className="relative z-10 text-center w-full max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 mb-4 sm:mb-6" style={{ backgroundColor: 'rgba(245,166,35,0.18)', border: '1px solid rgba(245,166,35,0.45)' }}>
+          <span className="inline-block w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ backgroundColor: C.accent }} />
+          <span className="font-body font-medium text-xs sm:text-sm tracking-widest uppercase" style={{ color: C.accent }}>San Diego County's Most Trusted Towing</span>
         </div>
 
-        <h1 className="font-display font-black text-white leading-none mb-6" style={{ fontSize: 'clamp(2.4rem, 7vw, 5.5rem)', textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
-          Towing &amp; Roadside<br className="hidden sm:block" /> Assistance in
-          <span style={{ color: C.accent }}> San Diego County</span>
+        {/* H1 — bigger impact on mobile */}
+        <h1
+          className="font-display font-black text-white leading-none mb-4 sm:mb-6"
+          style={{ fontSize: 'clamp(2.6rem, 10vw, 5.5rem)', textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
+        >
+          Towing &amp; Roadside<br />
+          Assistance in
+          <span style={{ color: C.accent }}> San Diego</span>
         </h1>
 
-        <p className="font-body text-lg sm:text-xl mb-10 max-w-2xl mx-auto" style={{ color: '#E5E7EB', lineHeight: 1.6 }}>
-          Fast Response &nbsp;&middot;&nbsp; Open 24/7 &nbsp;&middot;&nbsp; Serving Chula Vista &amp; All of San Diego &nbsp;&middot;&nbsp; Damage&#8209;Free Guaranteed
+        {/* Sub */}
+        <p className="font-body text-base sm:text-xl mb-7 sm:mb-10 max-w-2xl mx-auto" style={{ color: '#E5E7EB', lineHeight: 1.6 }}>
+          Fast Response &nbsp;&middot;&nbsp; Open 24/7 &nbsp;&middot;&nbsp; Damage&#8209;Free Guaranteed
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+        {/* CTAs — full width on mobile, side by side on sm+ */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mb-7 sm:mb-10 px-2 sm:px-0">
           <a
             href={PHONE_HREF}
-            className="animate-pulse-cta inline-flex items-center justify-center gap-3 font-display font-black rounded-xl shadow-2xl transition-all duration-200 hover:scale-105"
-            style={{ backgroundColor: C.accent, color: C.accentText, fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)', padding: '1rem 2rem', boxShadow: `0 0 40px rgba(245,166,35,0.35)` }}
+            className="animate-pulse-cta inline-flex items-center justify-center gap-3 font-display font-black rounded-2xl shadow-2xl w-full sm:w-auto"
+            style={{
+              backgroundColor: C.accent, color: C.accentText,
+              fontSize: 'clamp(1.2rem, 5vw, 1.4rem)',
+              padding: '1.1rem 2rem',
+              minHeight: '60px',
+              boxShadow: '0 0 40px rgba(245,166,35,0.4)',
+            }}
           >
-            <PhoneIcon cls="w-5 h-5" /> Call {PHONE}
+            <PhoneIcon cls="w-6 h-6" /> Call {PHONE}
           </a>
           <a
             href="#services"
-            className="inline-flex items-center justify-center gap-3 font-display font-bold rounded-xl transition-all duration-200 hover:bg-white/10"
-            style={{ border: '2px solid rgba(255,255,255,0.6)', color: '#FFFFFF', fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)', padding: '1rem 2rem' }}
+            className="inline-flex items-center justify-center gap-2 font-display font-bold rounded-2xl w-full sm:w-auto"
+            style={{
+              border: '2px solid rgba(255,255,255,0.6)', color: '#FFFFFF',
+              fontSize: 'clamp(1rem, 4vw, 1.2rem)',
+              padding: '1.1rem 1.75rem',
+              minHeight: '60px',
+            }}
           >
             See Our Services
           </a>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3">
+        {/* Trust badges — 2×2 on mobile, row on desktop */}
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 px-2 sm:px-0">
           {[
             { icon: <StarFilled cls="w-4 h-4" />,  text: '4.6 Star Rated'   },
             { icon: <ClockIcon cls="w-4 h-4" />,   text: 'Open 24/7'        },
             { icon: <ShieldIcon cls="w-4 h-4" />,  text: 'Damage-Free'       },
             { icon: <MedalIcon cls="w-4 h-4" />,   text: 'Military Discount' },
           ].map(b => (
-            <div key={b.text} className="flex items-center gap-2 rounded-full px-4 py-2 font-body font-medium text-sm text-white" style={{ backgroundColor: 'rgba(255,255,255,0.14)', backdropFilter: 'blur(4px)' }}>
+            <div
+              key={b.text}
+              className="flex items-center justify-center gap-2 rounded-full px-3 py-2 font-body font-medium text-xs sm:text-sm text-white"
+              style={{ backgroundColor: 'rgba(255,255,255,0.14)', backdropFilter: 'blur(4px)' }}
+            >
               {b.icon} {b.text}
             </div>
           ))}
@@ -294,21 +327,21 @@ function Hero() {
 // ─── Trust Bar ────────────────────────────────────────────────────────────────
 function TrustBar() {
   const items = [
-    { icon: <BoltIcon cls="w-6 h-6" />,  title: 'Fast Response', sub: '30–40 Min'   },
-    { icon: <ClockIcon cls="w-6 h-6" />, title: 'Available',     sub: '24/7'         },
-    { icon: <StarFilled cls="w-6 h-6" />,title: '4.6 Star',      sub: 'Rated'        },
-    { icon: <MedalIcon cls="w-6 h-6" />, title: 'Military',      sub: 'Discount'     },
+    { icon: <BoltIcon cls="w-5 h-5 sm:w-6 sm:h-6" />,   title: 'Fast Response', sub: '30–40 Min'   },
+    { icon: <ClockIcon cls="w-5 h-5 sm:w-6 sm:h-6" />,  title: 'Open',          sub: '24/7'         },
+    { icon: <StarFilled cls="w-5 h-5 sm:w-6 sm:h-6" />, title: '4.6 Star',      sub: 'Rated'        },
+    { icon: <MedalIcon cls="w-5 h-5 sm:w-6 sm:h-6" />,  title: 'Military',      sub: 'Discount'     },
   ]
   return (
     <div style={{ backgroundColor: C.accent }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x md:divide-black/10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-5">
+        <div className="grid grid-cols-4 gap-1 sm:gap-0 sm:divide-x sm:divide-black/10">
           {items.map(item => (
-            <div key={item.title} className="flex items-center justify-center gap-3 py-1">
-              <span style={{ color: C.accentText }}>{item.icon}</span>
+            <div key={item.title} className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-1 text-center sm:text-left">
+              <span style={{ color: C.accentText }} className="flex-shrink-0">{item.icon}</span>
               <div>
-                <div className="font-display font-bold leading-tight" style={{ color: C.accentText, fontSize: '1.1rem' }}>{item.title}</div>
-                <div className="font-body text-sm" style={{ color: 'rgba(17,17,17,0.6)' }}>{item.sub}</div>
+                <div className="font-display font-bold leading-tight" style={{ color: C.accentText, fontSize: 'clamp(0.8rem, 3vw, 1.05rem)' }}>{item.title}</div>
+                <div className="font-body" style={{ color: 'rgba(17,17,17,0.6)', fontSize: 'clamp(0.7rem, 2.5vw, 0.875rem)' }}>{item.sub}</div>
               </div>
             </div>
           ))}
@@ -322,7 +355,7 @@ function TrustBar() {
 function Services() {
   const [ref, visible] = useFadeUp()
   return (
-    <section id="services" className="py-20 px-4 sm:px-6" style={{ backgroundColor: C.bg }}>
+    <section id="services" className="py-14 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: C.bg }}>
       <div className="max-w-7xl mx-auto">
         <div ref={ref} style={fade(visible)}>
           <SectionLabel>What We Do</SectionLabel>
@@ -385,7 +418,7 @@ function HowItWorks() {
     { num: '03', title: 'We Arrive in 30–40 Min', href: null, desc: 'Our fully insured driver arrives and handles your vehicle with precision — damage-free, every time.' },
   ]
   return (
-    <section className="py-20 px-4 sm:px-6" style={{ backgroundColor: C.bgAlt }}>
+    <section className="py-14 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: C.bgAlt }}>
       <div className="max-w-7xl mx-auto">
         <div ref={ref} style={fade(visible)}>
           <SectionLabel>Simple Process</SectionLabel>
@@ -438,7 +471,7 @@ function Gallery() {
   }, [lbIdx])
 
   return (
-    <section id="gallery" className="py-20 px-4 sm:px-6" style={{ backgroundColor: C.bg }}>
+    <section id="gallery" className="py-14 sm:py-20 px-3 sm:px-6" style={{ backgroundColor: C.bg }}>
       <div className="max-w-7xl mx-auto">
         <div ref={ref} style={fade(visible)}>
           <SectionLabel>Real Fleet, Real Team</SectionLabel>
@@ -489,7 +522,7 @@ function Gallery() {
 function Reviews() {
   const [ref, visible] = useFadeUp()
   return (
-    <section id="reviews" className="py-20 px-4 sm:px-6" style={{ backgroundColor: C.bgAlt }}>
+    <section id="reviews" className="py-14 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: C.bgAlt }}>
       <div className="max-w-7xl mx-auto">
         <div ref={ref} style={fade(visible)}>
           <SectionLabel>Customer Reviews</SectionLabel>
@@ -547,7 +580,7 @@ function ReviewCard({ review, delay, visible }) {
 function CTABanner() {
   const [ref, visible] = useFadeUp()
   return (
-    <section className="py-20 px-4 sm:px-6" style={{ backgroundColor: C.accent }}>
+    <section className="py-14 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: C.accent }}>
       <div className="max-w-4xl mx-auto text-center">
         <div ref={ref} style={fade(visible)}>
           <h2 className="font-display font-black leading-tight mb-4" style={{ color: C.accentText, fontSize: 'clamp(2.2rem, 6vw, 4.5rem)' }}>
@@ -647,9 +680,22 @@ function Footer() {
 // ─── Mobile Sticky Bottom Bar ─────────────────────────────────────────────────
 function MobileBottomBar() {
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ boxShadow: '0 -4px 20px rgba(0,0,0,0.12)' }}>
-      <a href={PHONE_HREF} className="flex items-center justify-center gap-3 w-full font-display font-black text-xl py-4" style={{ backgroundColor: C.accent, color: C.accentText }}>
-        <PhoneIcon cls="w-5 h-5" /> Call Now: {PHONE}
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ boxShadow: '0 -4px 24px rgba(0,0,0,0.18)' }}>
+      <a
+        href={PHONE_HREF}
+        className="mobile-bar-safe flex items-center justify-center gap-3 w-full font-display font-black"
+        style={{
+          backgroundColor: C.accent,
+          color: C.accentText,
+          fontSize: 'clamp(1.1rem, 5vw, 1.3rem)',
+          paddingTop: '1rem',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          minHeight: '64px',
+        }}
+      >
+        <PhoneIcon cls="w-6 h-6 flex-shrink-0" />
+        <span>Tap to Call: {PHONE}</span>
       </a>
     </div>
   )
@@ -702,7 +748,7 @@ function ChatWidget() {
     <>
       {/* Chat panel */}
       <div
-        className="fixed z-50 flex flex-col"
+        className="chat-panel-wrap fixed z-50 flex flex-col"
         style={{
           bottom: '5.5rem', right: '1.25rem',
           width: 'min(380px, calc(100vw - 2rem))', height: '520px',
@@ -769,8 +815,8 @@ function ChatWidget() {
               ref={inputRef} value={input}
               onChange={e => setInput(e.target.value)} onKeyDown={onKey}
               placeholder="Ask about services, pricing, availability..."
-              rows={1} className="flex-1 bg-transparent font-body text-sm text-white placeholder-gray-600 resize-none focus:outline-none"
-              style={{ maxHeight: '80px', lineHeight: '1.5' }}
+              rows={1} className="flex-1 bg-transparent font-body text-white placeholder-gray-600 resize-none focus:outline-none"
+              style={{ fontSize: '16px', maxHeight: '80px', lineHeight: '1.5' }}
             />
             <button
               onClick={send} disabled={!input.trim() || loading}
@@ -790,7 +836,7 @@ function ChatWidget() {
       <button
         onClick={() => setOpen(o => !o)}
         aria-label={open ? 'Close chat' : 'Open chat assistant'}
-        className="fixed z-50 flex items-center gap-2.5 font-display font-bold text-sm rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95"
+        className="chat-toggle-btn fixed z-50 flex items-center gap-2.5 font-display font-bold text-sm rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95"
         style={{
           bottom: '1.25rem', right: '1.25rem',
           backgroundColor: open ? '#1C1C1C' : C.accent,
