@@ -80,18 +80,15 @@
     .gallery-item { break-inside: avoid; margin-bottom: 0.625rem; }
     @media (min-width: 1024px) { .gallery-item { margin-bottom: 1rem; } }
 
-    /* Mobile bottom bar — clear space so content isn't hidden behind it */
-    @media (max-width: 767px) { main, footer { padding-bottom: 72px; } }
-
     /* Review horizontal scroll */
     .reviews-scroll { scrollbar-width: none; -ms-overflow-style: none; }
     .reviews-scroll::-webkit-scrollbar { display: none; }
 
-    /* Chat widget — float above the mobile bottom bar */
+    /* Chat widget — mobile positioning */
     @media (max-width: 767px) {
-      .chat-toggle-btn  { bottom: calc(72px + 0.875rem) !important; right: 0.875rem !important; }
+      .chat-toggle-btn  { bottom: 0.875rem !important; right: 0.875rem !important; }
       .chat-panel-wrap  {
-        bottom: calc(72px + 4.25rem) !important;
+        bottom: 4.25rem !important;
         right: 0.75rem !important;
         width: calc(100vw - 1.5rem) !important;
         height: 62svh !important;

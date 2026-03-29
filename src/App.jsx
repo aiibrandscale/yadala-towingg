@@ -869,7 +869,6 @@ export default function App() {
         <CTABanner />
       </main>
       <Footer />
-      <MobileBottomBar />
       <ChatWidget />
     </div>
   )
